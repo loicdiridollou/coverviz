@@ -1,0 +1,11 @@
+# Local development dependencies including docs building
+name: coverviz-env
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.8
+  - pip
+  - numpy
+  - pylint
+  - pytest
+  - ruff
