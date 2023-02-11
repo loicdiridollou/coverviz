@@ -3,7 +3,7 @@ package:
   version: 0.0.1
 
 source:
-  path: "coverviz/"
+  git_url: https://github.com/loicdiridollou/coverviz.git
 
 requirements:
   build:
