@@ -1,0 +1,17 @@
+package:
+  name: coverviz
+  version: 0.0.1
+
+source:
+  path: "coverviz/"
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+
+about:
+  home: http://github.com/loicdiridollou/coverviz
