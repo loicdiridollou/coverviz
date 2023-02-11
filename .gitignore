@@ -1,2 +1,4 @@
 *.egg-info/
 dist/*
+venv/
+coverage.json
