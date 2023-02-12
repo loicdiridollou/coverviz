@@ -1,10 +1,8 @@
-from pathlib import Path
+"""Experiment file."""
 import json
+from pathlib import Path
 
 
 def load_json(path: Path) -> dict:
+    """Data loader."""
     return json.load(path.open())
-
-
-if __name__ == "__main__":
-    load_json(Path('.'))
