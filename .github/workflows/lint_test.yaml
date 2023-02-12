@@ -1,4 +1,4 @@
-name: Python Package Using Anaconda
+name: Linting and testing
 
 on: [push]
 
@@ -22,7 +22,10 @@ jobs:
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
-          flake8 .          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          ruff ./coverviz
+          flake8 ./coverviz          
+          pylint ./coverviz
+
       - name: Test with pytest
         run: |
           pytest
