@@ -61,7 +61,7 @@ def split_coverage(lst: list):
     """Generate trie structure of the coverage."""
     res = {}
     for idx, value in lst:
-        idx = idx.split("/")[1:]
+        idx = idx.split("/")
         root = res
         while idx:
             elm = idx[0]
@@ -73,9 +73,12 @@ def split_coverage(lst: list):
     return res
 
 
-def generate_coverage_level(dic: dict[str, dict[str, Any]]):
+def generate_coverage_level(dic: dict[str, Any], prefix):
     """Generate data for the files and sub modules."""
     res = {}
+    route = prefix.split(".")
+    for elm in route:
+        dic = dic[elm]
 
     for key in dic:
         if key != "coverage":
