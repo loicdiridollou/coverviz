@@ -3,3 +3,4 @@ dist/*
 venv/
 coverage.json
 **/__pycache__/
+build/
