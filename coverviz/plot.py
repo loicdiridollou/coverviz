@@ -25,11 +25,12 @@ def prepare_data(dic: dict[str, list[int]]) -> tuple[list, list, list]:
 def treemap(sizes, labels: list | None = None, colors: list | None = None,
             title: str | None = None) -> plt.FigureBase:
     """Draw treemap of the coverage."""
-    fig = plt.figure(figsize=(15, 10))  # noqa
+    fig = plt.figure(figsize=(15, 10))
     squarify.plot(sizes, label=labels, color=colors, edgecolor="white")
     plt.axis("off")
     if title:
         plt.title(title)
+
     return fig
 
 
@@ -42,12 +43,13 @@ def barh(sizes: list[int], labels: list[str], colors: list | None = None,
     fig, ax = plt.subplots(figsize=(15, 10))
 
     y_labels = [label.split("\n")[0] for label in labels]
-    [label.split("\n")[1] for label in labels]
+    bar_labels = [label.split("\n")[1] for label in labels]
 
-    ax.barh(y_pos, sizes, color=colors, align="center")
+    hbars = ax.barh(y_pos, sizes, color=colors, align="center")
     ax.set_yticks(y_pos, labels=y_labels)
     ax.invert_yaxis()  # labels read top-to-bottom
-    # ax.bar_label(hbars, labels=bar_labels, label_type='center')
+    ax.bar_label(hbars, labels=bar_labels, label_type="center")
     ax.set_xlabel("Number of lines in the module/file.")
     ax.set_title(title)
-    plt.show()
+
+    return fig

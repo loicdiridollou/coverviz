@@ -4,3 +4,5 @@ venv/
 coverage.json
 **/__pycache__/
 build/
+.DS_Store
+**/.DS_Store
