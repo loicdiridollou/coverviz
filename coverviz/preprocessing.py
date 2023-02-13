@@ -41,6 +41,18 @@ def identify_modules(dic: dict[str, Any], path: str = ""):
     return res
 
 
+def identify_modules_2(dic: dict[str, Any], path: str = ""):
+    """Find the modules and coverage."""
+    res = []
+    for key in dic:
+        if isinstance(dic[key], dict) and key != "tests" and not key.endswith(".py"):
+            if "__init__.py" in dic[key]:
+                res.append(f"{path}/{key}")
+            res += identify_modules_2(dic[key], f"{path}/{key}")
+
+    return res
+
+
 def generate_coverage(dic):
     """Generate module coverages."""
     lines = 0

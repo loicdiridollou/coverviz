@@ -22,48 +22,32 @@ def prepare_data(dic: dict[str, list[int]]) -> tuple[list, list, list]:
     return modules, sizes, colors
 
 
-def treemap(sizes, labels: list | None = None, colors: list | None = None):
+def treemap(sizes, labels: list | None = None, colors: list | None = None,
+            title: str | None = None) -> plt.FigureBase:
     """Draw treemap of the coverage."""
     fig = plt.figure(figsize=(15, 10))  # noqa
     squarify.plot(sizes, label=labels, color=colors, edgecolor="white")
     plt.axis("off")
-    plt.show()
+    if title:
+        plt.title(title)
+    return fig
 
 
-def sunburst(nodes, total=np.pi * 2, offset=0, level=0):
-    """Draw sunburst plot of the coverage."""
-    ax = plt.subplot(111, projection="polar")
+def barh(sizes: list[int], labels: list[str], colors: list | None = None,
+         title: str = "") -> plt.FigureBase:
+    """Draew horizontal bar graph of the coverage."""
+    # Example data
+    y_pos = np.arange(len(labels))
 
-    if level == 0 and len(nodes) == 1:
-        label, value, subnodes = nodes[0]
-        ax.bar([0], [0.5], [np.pi * 2])
-        ax.text(0, 0, label, ha="center", va="center")
-        sunburst(subnodes, total=value, level=level + 1, ax=ax)
-    elif nodes:
-        d = np.pi * 2 / total
-        labels = []
-        widths = []
-        local_offset = offset
-        for label, value, subnodes in nodes:
-            labels.append(label)
-            widths.append(value * d)
-            sunburst(subnodes, total=total, offset=local_offset,
-                     level=level + 1, ax=ax)
-            local_offset += value
-        values = np.cumsum([offset * d] + widths[:-1])
-        heights = [1] * len(nodes)
-        bottoms = np.zeros(len(nodes)) + level - 0.5
-        rects = ax.bar(values, heights, widths, bottoms, linewidth=1,
-                       edgecolor="white", align="edge")
-        for rect, label in zip(rects, labels, strict=True):
-            x = rect.get_x() + rect.get_width() / 2
-            y = rect.get_y() + rect.get_height() / 2
-            rotation = (90 + (360 - np.degrees(x) % 180)) % 360
-            ax.text(x, y, label, rotation=rotation, ha="center", va="center")
+    fig, ax = plt.subplots(figsize=(15, 10))
 
-    if level == 0:
-        ax.set_theta_direction(-1)
-        ax.set_theta_zero_location("N")
-        ax.set_axis_off()
+    y_labels = [label.split("\n")[0] for label in labels]
+    [label.split("\n")[1] for label in labels]
 
+    ax.barh(y_pos, sizes, color=colors, align="center")
+    ax.set_yticks(y_pos, labels=y_labels)
+    ax.invert_yaxis()  # labels read top-to-bottom
+    # ax.bar_label(hbars, labels=bar_labels, label_type='center')
+    ax.set_xlabel("Number of lines in the module/file.")
+    ax.set_title(title)
     plt.show()
