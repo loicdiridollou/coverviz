@@ -38,9 +38,9 @@ line-length = 100
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 
-[tool.pylint."MESSAGES CONTROL"]
+[tool.pylint.'MESSAGES CONTROL']
 max-line-length = 100
-disable = ["W0107"]
+disable = 'unnecessary-pass'
 
 
 [tool.mypy]

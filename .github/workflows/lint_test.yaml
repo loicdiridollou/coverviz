@@ -25,7 +25,7 @@ jobs:
           # stop the build if there are Python syntax errors or undefined names
           ruff ./coverviz ./tests
           flake8 ./coverviz ./tests
-          pylint ./coverviz ./tests --disable=W0107
+          pylint ./coverviz ./tests --rcfile pyproject.toml
 
       - name: Type checking with mypy
         run: |

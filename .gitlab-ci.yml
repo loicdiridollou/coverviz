@@ -12,7 +12,7 @@ lint:
   script:
     - ruff ./coverviz ./tests
     - flake8 ./coverviz ./tests
-    - pylint ./coverviz ./tests --disable=W0107
+    - pylint ./coverviz ./tests --rcfile pyproject.toml
 
 type:
   script:
