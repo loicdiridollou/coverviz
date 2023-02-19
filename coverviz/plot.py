@@ -40,7 +40,9 @@ def barh(sizes: list[int], labels: list[str], colors: list | None = None,
     # Example data
     y_pos = np.arange(len(labels))
 
-    fig, ax = plt.subplots(figsize=(15, 10))
+    subplots = plt.subplots(figsize=(15, 10))
+    fig: plt.FigureBase = subplots[0]
+    ax: plt.Axes = subplots[1]
 
     y_labels = [label.split("\n")[0] for label in labels]
     bar_labels = [label.split("\n")[1] for label in labels]
