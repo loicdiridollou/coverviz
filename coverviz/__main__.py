@@ -3,11 +3,10 @@ import sys
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 from pathlib import Path
 
-from matplotlib.backends.backend_pdf import PdfPages
-
 import coverviz.plot as cplt
 import coverviz.preprocessing as om
 from coverviz.preprocessing import clean_up_json, load_json
+from coverviz.report import save_report
 
 
 def main():
@@ -55,14 +54,6 @@ def generate_barh(args):
         figs.append(cplt.barh(sizes, modules, colors, title=f"Coverage for {title}"))
 
     save_report(args.output + "22.pdf", figs)
-
-
-def save_report(filename, figs):
-    """Save list of figures to PDF report."""
-    p = PdfPages(filename)
-    for fig in figs:
-        fig.savefig(p, format="pdf")
-    p.close()
 
 
 def parse_args(args: list[str] | None = None):
