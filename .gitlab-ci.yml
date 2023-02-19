@@ -11,6 +11,11 @@ lint:
   script:
     - ruff ./coverviz
     - flake8 ./coverviz
+    - pylint ./coverviz
+
+type:
+  script:
+    - mypy ./coverviz
 
 test:
   script:

@@ -20,12 +20,16 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           python setup.py install
-      - name: Lint with flake8
+      - name: Lint with ruff, flake8 and pylint
         run: |
           # stop the build if there are Python syntax errors or undefined names
           ruff ./coverviz
           flake8 ./coverviz          
           pylint ./coverviz
+
+      - name: Type checking with mypy
+        run: |
+          mypy ./coverviz
 
       - name: Test with pytest
         run: |

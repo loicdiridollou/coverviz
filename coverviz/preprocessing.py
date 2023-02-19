@@ -1,4 +1,5 @@
 """Module with the old functions for experiments."""
+from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Any
@@ -9,7 +10,7 @@ def load_json(path: Path) -> dict:
     return json.load(path.open())
 
 
-def clean_up_json(dic: dict[str, dict]) -> dict:
+def clean_up_json(dic: dict[str, dict]) -> dict[str, Any]:
     """Clean up coverage file."""
     dic_res = {}
 
@@ -28,7 +29,7 @@ def clean_up_json(dic: dict[str, dict]) -> dict:
     return dic_res
 
 
-def identify_modules(dic: dict[str, Any], path: str = ""):
+def identify_modules(dic: dict[str, Any], path: str = "") -> list:
     """Find the modules and coverage."""
     res = []
     for key in dic:
