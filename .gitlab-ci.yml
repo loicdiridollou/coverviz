@@ -1,0 +1,17 @@
+# CI/CD pipeline for the coverviz package, does not include build stage
+image: python:latest
+
+before_script:
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install -r requirements.txt
+
+lint:
+  script:
+    - ruff ./coverviz
+    - flake8 ./coverviz
+
+test:
+  script:
+    - pytest ./coverviz
