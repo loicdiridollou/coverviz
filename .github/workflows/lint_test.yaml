@@ -23,9 +23,9 @@ jobs:
       - name: Lint with ruff, flake8 and pylint
         run: |
           # stop the build if there are Python syntax errors or undefined names
-          ruff ./coverviz
-          flake8 ./coverviz          
-          pylint ./coverviz
+          ruff ./coverviz ./tests
+          flake8 ./coverviz ./tests
+          pylint ./coverviz ./tests --disable=W0107
 
       - name: Type checking with mypy
         run: |
@@ -33,4 +33,4 @@ jobs:
 
       - name: Test with pytest
         run: |
-          pytest
+          pytest ./tests

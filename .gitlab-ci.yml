@@ -10,9 +10,9 @@ before_script:
 
 lint:
   script:
-    - ruff ./coverviz
-    - flake8 ./coverviz
-    - pylint ./coverviz
+    - ruff ./coverviz ./tests
+    - flake8 ./coverviz ./tests
+    - pylint ./coverviz ./tests --disable=W0107
 
 type:
   script:
@@ -21,4 +21,4 @@ type:
 test:
   script:
     - python setup.py install
-    - pytest ./coverviz
+    - pytest ./tests
