@@ -1,1 +1,1 @@
-/opt/anaconda3/bin/python setup.py install
+$CONDA setup.py install     # Python command to install the script.

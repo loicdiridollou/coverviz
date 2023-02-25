@@ -3,12 +3,19 @@ package:
   version: 0.0.1
 
 source:
-  git_url: https://github.com/loicdiridollou/coverviz.git
+  path: ../coverviz
 
 requirements:
+  host:
+    - python=3.10
+    - setuptools
+    - pip
+
   build:
     - python
     - setuptools
+    - path
+    - squarify
 
   run:
     - python
