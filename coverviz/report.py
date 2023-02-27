@@ -1,5 +1,5 @@
 """Module to generate the pdf report with all coverage."""
-from matplotlib.backends.backend_pgf import PdfPages
+from matplotlib.backends.backend_pdf import PdfPages
 
 
 def save_report(filename, figs):
