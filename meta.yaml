@@ -5,20 +5,26 @@ package:
 source:
   path: ../coverviz
 
+build:
+  number: 0
+  script: "{{ PYTHON }} setup.py install"
+
 requirements:
   host:
-    - python=3.10
-    - setuptools
-    - pip
-
-  build:
     - python
     - setuptools
-    - path
+    - pip
+    - pandas
     - squarify
+    - matplotlib
+    - seaborn
 
   run:
     - python
+    - pandas>=1.4.4
+    - squarify
+    - matplotlib
+    - seaborn
 
 about:
   home: http://github.com/loicdiridollou/coverviz
