@@ -25,6 +25,7 @@ def generate_treemap(args):
     new = om.split_coverage(res)
     list_modules = om.identify_modules_2(vv)
 
+    import pdb; pdb.set_trace()
     figs = []
     for module in list_modules:
         mod_name = module[1:].replace("/", ".")
